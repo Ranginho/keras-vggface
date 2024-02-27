@@ -13,11 +13,11 @@ from keras.layers import Flatten, Dense, Input, GlobalAveragePooling2D, \
     GlobalMaxPooling2D, Activation, Conv2D, MaxPooling2D, BatchNormalization, \
     AveragePooling2D, Reshape, Permute, multiply
 from keras_applications.imagenet_utils import _obtain_input_shape
-from keras.utils import layer_utils
+# from keras.utils import layer_utils
 from keras.utils.data_utils import get_file
 from keras import backend as K
 from keras_vggface import utils
-from keras.utils.layer_utils import get_source_inputs
+# from keras.utils.layer_utils import get_source_inputs
 import warnings
 from keras.models import Model
 from keras import layers
@@ -99,7 +99,8 @@ def VGG16(include_top=True, weights='vggface',
             # Ensure that the model takes into account
             # any potential predecessors of `input_tensor`.
     if input_tensor is not None:
-        inputs = get_source_inputs(input_tensor)
+        pass
+        # inputs = get_source_inputs(input_tensor)
     else:
         inputs = img_input
         # Create model.
@@ -115,16 +116,16 @@ def VGG16(include_top=True, weights='vggface',
                                     utils.VGG16_WEIGHTS_PATH_NO_TOP,
                                     cache_subdir=utils.VGGFACE_DIR)
         model.load_weights(weights_path, by_name=True)
-        if K.backend() == 'theano':
-            layer_utils.convert_all_kernels_in_model(model)
+        # if K.backend() == 'theano':
+        #     layer_utils.convert_all_kernels_in_model(model)
 
-        if K.image_data_format() == 'channels_first':
-            if include_top:
-                maxpool = model.get_layer(name='pool5')
-                shape = maxpool.output_shape[1:]
-                dense = model.get_layer(name='fc6')
-                layer_utils.convert_dense_weights_data_format(dense, shape,
-                                                              'channels_first')
+        # if K.image_data_format() == 'channels_first':
+        #     if include_top:
+        #         maxpool = model.get_layer(name='pool5')
+        #         shape = maxpool.output_shape[1:]
+        #         dense = model.get_layer(name='fc6')
+        #         layer_utils.convert_dense_weights_data_format(dense, shape,
+        #                                                       'channels_first')
 
             if K.backend() == 'tensorflow':
                 warnings.warn('You are using the TensorFlow backend, yet you '
@@ -268,7 +269,8 @@ def RESNET50(include_top=True, weights='vggface',
     # Ensure that the model takes into account
     # any potential predecessors of `input_tensor`.
     if input_tensor is not None:
-        inputs = get_source_inputs(input_tensor)
+        pass
+        # inputs = get_source_inputs(input_tensor)
     else:
         inputs = img_input
     # Create model.
@@ -285,14 +287,14 @@ def RESNET50(include_top=True, weights='vggface',
                                     utils.RESNET50_WEIGHTS_PATH_NO_TOP,
                                     cache_subdir=utils.VGGFACE_DIR)
         model.load_weights(weights_path)
-        if K.backend() == 'theano':
-            layer_utils.convert_all_kernels_in_model(model)
-            if include_top:
-                maxpool = model.get_layer(name='avg_pool')
-                shape = maxpool.output_shape[1:]
-                dense = model.get_layer(name='classifier')
-                layer_utils.convert_dense_weights_data_format(dense, shape,
-                                                              'channels_first')
+        # if K.backend() == 'theano':
+        #     layer_utils.convert_all_kernels_in_model(model)
+        #     if include_top:
+        #         maxpool = model.get_layer(name='avg_pool')
+        #         shape = maxpool.output_shape[1:]
+        #         dense = model.get_layer(name='classifier')
+        #         layer_utils.convert_dense_weights_data_format(dense, shape,
+        #                                                       'channels_first')
 
         if K.image_data_format() == 'channels_first' and K.backend() == 'tensorflow':
             warnings.warn('You are using the TensorFlow backend, yet you '
@@ -475,7 +477,8 @@ def SENET50(include_top=True, weights='vggface',
     # Ensure that the model takes into account
     # any potential predecessors of `input_tensor`.
     if input_tensor is not None:
-        inputs = get_source_inputs(input_tensor)
+        pass
+        # inputs = get_source_inputs(input_tensor)
     else:
         inputs = img_input
     # Create model.
@@ -492,14 +495,14 @@ def SENET50(include_top=True, weights='vggface',
                                     utils.SENET50_WEIGHTS_PATH_NO_TOP,
                                     cache_subdir=utils.VGGFACE_DIR)
         model.load_weights(weights_path)
-        if K.backend() == 'theano':
-            layer_utils.convert_all_kernels_in_model(model)
-            if include_top:
-                maxpool = model.get_layer(name='avg_pool')
-                shape = maxpool.output_shape[1:]
-                dense = model.get_layer(name='classifier')
-                layer_utils.convert_dense_weights_data_format(dense, shape,
-                                                              'channels_first')
+        # if K.backend() == 'theano':
+        #     layer_utils.convert_all_kernels_in_model(model)
+        #     if include_top:
+        #         maxpool = model.get_layer(name='avg_pool')
+        #         shape = maxpool.output_shape[1:]
+        #         dense = model.get_layer(name='classifier')
+        #         layer_utils.convert_dense_weights_data_format(dense, shape,
+        #                                                       'channels_first')
 
         if K.image_data_format() == 'channels_first' and K.backend() == 'tensorflow':
             warnings.warn('You are using the TensorFlow backend, yet you '
