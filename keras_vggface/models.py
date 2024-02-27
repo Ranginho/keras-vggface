@@ -127,15 +127,15 @@ def VGG16(include_top=True, weights='vggface',
         #         layer_utils.convert_dense_weights_data_format(dense, shape,
         #                                                       'channels_first')
 
-            if K.backend() == 'tensorflow':
-                warnings.warn('You are using the TensorFlow backend, yet you '
-                              'are using the Theano '
-                              'image data format convention '
-                              '(`image_data_format="channels_first"`). '
-                              'For best performance, set '
-                              '`image_data_format="channels_last"` in '
-                              'your Keras config '
-                              'at ~/.keras/keras.json.')
+            # if K.backend() == 'tensorflow':
+            #     warnings.warn('You are using the TensorFlow backend, yet you '
+            #                   'are using the Theano '
+            #                   'image data format convention '
+            #                   '(`image_data_format="channels_first"`). '
+            #                   'For best performance, set '
+            #                   '`image_data_format="channels_last"` in '
+            #                   'your Keras config '
+            #                   'at ~/.keras/keras.json.')
     return model
 
 
